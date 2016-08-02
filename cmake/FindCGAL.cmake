@@ -1,0 +1,32 @@
+if(CGAL_INCLUDE_DIRS AND CGAL_LIBRARIES)
+	set(CGAL_FOUND TRUE)
+else(CGAL_INCLUDE_DIRS AND CGAL_LIBRARIES)
+	find_path( CGAL_INCLUDE_DIR
+		NAMES
+			CGAL/Polyhedron_3.h
+		PATHS
+			/usr/local/include
+			/usr/include
+		)
+
+	find_library(CGAL_LIBRARY 
+		NAMES
+			CGAL 
+		PATHS
+			/usr/local/lib
+			/usr/lib
+		)
+
+	set(CGAL_INCLUDE_DIRS ${CGAL_INCLUDE_DIR})
+	set(CGAL_LIBRARIES ${CGAL_LIBRARY})
+
+	if(CGAL_INCLUDE_DIRS AND CGAL_LIBRARIES)
+		set (CGAL_FOUND TRUE)
+	endif(CGAL_INCLUDE_DIRS AND CGAL_LIBRARIES)
+
+	if(CGAL_FOUND)
+		message(STATUS "Find CGAL include: ${CGAL_INCLUDE_DIRS}")
+		message(STATUS "Find CGAL library: ${CGAL_LIBRARIES}")
+	endif(CGAL_FOUND)
+
+endif(CGAL_INCLUDE_DIRS AND CGAL_LIBRARIES)
